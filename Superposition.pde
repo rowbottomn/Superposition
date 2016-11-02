@@ -2,7 +2,7 @@ import g4p_controls.*;
 import java.util.ArrayList;
 
 ArrayList <PVector> sin1, sin2, sinSum;  // Two images to load
-int numPoints = 10000;
+int numPoints = 1000;
 int amp1 = 40;
 int amp2 = 40;
 float oldFreq1;
@@ -28,7 +28,7 @@ void setup() {
   sinSum = new ArrayList<PVector>();
   // Load sin points
   for (int i = 0; i < numPoints ;i++  ){
-    sin1.add(new PVector(i*width/numPoints,amp1 *sin(i*freq1+phi1)+height/4.));
+    sin1.add(new PVector(i*width/numPoints,amp1 *sin(i*width/numPoints*freq1+phi1)+height/4.));
     sin2.add(new PVector(i*width/numPoints,amp2 *sin(i*freq2+phi1)+height/2.));
     sinSum.add(new PVector(i*width/numPoints,sin1.get(i).y+sin2.get(i).y));
   }
@@ -40,20 +40,16 @@ float oldPos1 ;
 float oldPos2;
 void draw() {
   background(255);
-  
-  // Get the position of the img1 scrollbar
-  // and convert to a value to display the img1 image 
-  
-  if ((freq1 != oldFreq1)||(freq2 != oldFreq2)||(angSpeed1!= 0.)){
+    
+  if ((freq1 != oldFreq1)||(freq2 != oldFreq2)||(angSpeed1!= 0.||angSpeed2 !=0)){
   //update
-
 
     sin1 = new ArrayList<PVector>();
     sin2 = new ArrayList<PVector>();
     sinSum = new ArrayList<PVector>();
    for (int i = 0; i < numPoints ;i++){    
-    sin1.add(new PVector(i*width/numPoints,amp1 *sin(i*freq1+phi1+frameCount*angSpeed1)+height/4.)) ;
-    sin2.add(new PVector(i*width/numPoints,amp2 *sin(i*freq2+phi2+frameCount*angSpeed2)+height/2.));
+    sin1.add(new PVector(i*width/numPoints,amp1 *sin(i/2*freq1+phi1+frameCount*angSpeed1)+height/4.)) ;
+    sin2.add(new PVector(i*width/numPoints,amp2 *sin(i/2*freq2+phi2+frameCount*angSpeed2)+height/2.));
     sinSum.add(new PVector(i*width/numPoints,sin1.get(i).y+sin2.get(i).y));
    }   
   }

@@ -34,10 +34,17 @@ public void slider4_change1(GSlider source, GEvent event) { //_CODE_:slider4:466
 } //_CODE_:slider4:466821:
 
 public void slider5_change1(GSlider source, GEvent event) { //_CODE_:slider5:394346:
-  angSpeed2 = source.getValueF()/5.;
-  angSpeed2 = -angSpeed1;
+  angSpeed1 = source.getValueF()/5.;
+  
   println("slider5 - GSlider >> GEvent." + event + " @ " + millis());
 } //_CODE_:slider5:394346:
+
+public void slider6_change1(GSlider source, GEvent event) { //_CODE_:slider5:394346:
+  angSpeed2 = source.getValueF()/5.;
+  
+  println("slider5 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:slider5:394346:
+
 
 public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox1:780184:
   println("checkbox1 - GCheckbox >> GEvent." + event + " @ " + millis());
@@ -55,11 +62,11 @@ public void createGUI(){
     frame.setTitle("Sketch Window");
   slider1 = new GSlider(this, 10, 50, 200, 60, 10.0);
   slider1.setShowValue(true);
-  slider1.setLimits(0.3, 0.0, 0.5);
-  slider1.setNbrTicks(49);
+  slider1.setLimits(10, 0.0, 60);
+  slider1.setNbrTicks(61);
   slider1.setStickToTicks(true);
-  slider1.setShowTicks(true);
-  slider1.setNumberFormat(G4P.DECIMAL, 2);
+  slider1.setShowTicks(false);
+  slider1.setNumberFormat(G4P.DECIMAL, 0);
   slider1.setOpaque(false);
   slider1.addEventHandler(this, "slider1_change1");
   sin1_label = new GLabel(this, 10, 30, 120, 20);
@@ -67,11 +74,11 @@ public void createGUI(){
   sin1_label.setOpaque(false);
   slider2 = new GSlider(this, 10, 250, 200, 60, 10.0);
   slider2.setShowValue(true);
-  slider2.setLimits(0.3, 0.0, 0.5);
-  slider2.setNbrTicks(49);
+  slider2.setLimits(10, 0.0, 60);
+  slider2.setNbrTicks(61);
   slider2.setStickToTicks(true);
-  slider2.setShowTicks(true);
-  slider2.setNumberFormat(G4P.DECIMAL, 2);
+  slider2.setShowTicks(false);
+  slider2.setNumberFormat(G4P.DECIMAL, 0);
   slider2.setOpaque(false);
   slider2.addEventHandler(this, "slider2_change1");
   sin2_label = new GLabel(this, 10, 230, 120, 20);
@@ -85,7 +92,7 @@ public void createGUI(){
   slider3.setLimits(0.0, 0.0, 2.0);
   slider3.setNbrTicks(49);
   slider3.setStickToTicks(true);
-  slider3.setShowTicks(true);
+  slider3.setShowTicks(false);
   slider3.setNumberFormat(G4P.DECIMAL, 2);
   slider3.setOpaque(false);
   slider3.addEventHandler(this, "slider3_change1");
@@ -94,7 +101,7 @@ public void createGUI(){
   slider4.setLimits(0.0, 0.0, 2.0);
   slider4.setNbrTicks(51);
   slider4.setStickToTicks(true);
-  slider4.setShowTicks(true);
+  slider4.setShowTicks(false);
   slider4.setNumberFormat(G4P.DECIMAL, 2);
   slider4.setOpaque(false);
   slider4.addEventHandler(this, "slider4_change1");
@@ -109,6 +116,13 @@ public void createGUI(){
   slider5.setNumberFormat(G4P.DECIMAL, 2);
   slider5.setOpaque(false);
   slider5.addEventHandler(this, "slider5_change1");
+
+  slider6 = new GSlider(this, 450, 250, 200, 60, 10.0);
+  slider6.setLimits(0.0, 0.0, 4.0);
+  slider6.setNumberFormat(G4P.DECIMAL, 2);
+  slider6.setOpaque(false);
+  slider6.addEventHandler(this, "slider6_change1");
+
   speed1label = new GLabel(this, 450, 30, 80, 20);
   speed1label.setText("speed");
   speed1label.setOpaque(false);
@@ -117,12 +131,12 @@ public void createGUI(){
   speed2label.setOpaque(false);
   togGroup1 = new GToggleGroup();
   togGroup2 = new GToggleGroup();
-  checkbox1 = new GCheckbox(this, 450, 270, 120, 20);
-  checkbox1.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox1.setText("fixed end?");
-  checkbox1.setOpaque(false);
-  checkbox1.addEventHandler(this, "checkbox1_clicked1");
-  checkbox1.setSelected(true);
+  //checkbox1 = new GCheckbox(this, 450, 270, 120, 20);
+  //checkbox1.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  //checkbox1.setText("Move wave?");
+  //checkbox1.setOpaque(false);
+  //checkbox1.addEventHandler(this, "checkbox1_clicked1");
+  //checkbox1.setSelected(true);
 }
 
 // Variable declarations 
@@ -137,9 +151,9 @@ GSlider slider4;
 GLabel phase1; 
 GLabel phase2; 
 GSlider slider5; 
+GSlider slider6; 
 GLabel speed1label; 
 GLabel speed2label; 
 GToggleGroup togGroup1; 
 GToggleGroup togGroup2; 
-GCheckbox checkbox1; 
-
+//GCheckbox checkbox1; 
